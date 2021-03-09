@@ -1,0 +1,56 @@
+<div>
+
+  <form #calculatePenaltyForm="ngForm" (ngSubmit)="calculate();">
+    <div>
+      <label for="checkOut">Checkout date:</label>
+      <input
+        type="date"
+        id="checkOut"
+        [(ngModel)]="calculatePenalty.checkoutDate"
+        name="checkOut"
+        #checkOut="ngModel">
+    </div>
+
+    <div>
+      <label for="returnDate">Return date:</label>
+      <input
+        type="date"
+        id="returnDate"
+        [(ngModel)]="calculatePenalty.returnedDate"
+        name="returnDate"
+        #returnDate="ngModel">
+    </div>
+
+    <div>
+      <ng-select
+        required
+        [items]="countries"
+        bindLabel="name"
+        bindValue="id"
+        [(ngModel)]="calculatePenalty.countryId"
+        name="country"
+        #country‏="ngModel"
+        placeholder="Select Country">
+      </ng-select>
+    </div>
+
+    <button type="submit"
+            [disabled]="!calculatePenaltyForm.valid">
+      Calculate
+    </button>
+  </form>
+
+</div>
+
+<div *ngIf="showPenalty">
+  <div>
+    <span>Business Days: </span>
+    <span>{{calculatedPenalty.businessDays}}</span>
+  </div>
+
+  <div>
+    <span>Penalty: </span>
+    <span>{{calculatedPenalty.penalty}}</span>
+  </div>
+
+</div>
